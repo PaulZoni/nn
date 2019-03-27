@@ -8,7 +8,7 @@ from facerecognition.evaluate.FaceCropper import FaceCropper
 person = '/home/pavel/Документы/VID_20190320_215159.mp4'
 i = "/home/pavel/Документы/VID_20190317_115037.mp4"
 
-cap = cv2.VideoCapture(person)
+cap = cv2.VideoCapture(i)
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-m", "--model", required=False, help="path to pre-trained model", default="/home/pavel/PycharmProjects/nn/facerecognition/savemodel/face_weights.hdf5")
@@ -25,7 +25,7 @@ while(True):
     ret, frame = cap.read()
 
     detecter = FaceCropper()
-    data = detecter.generate(frame=frame, show_result=False)
+    data = detecter.generate(frame=frame, show_result=True)
     #data = cv2.resize(frame, (32, 32), interpolation=cv2.INTER_AREA)
 
     print("[INFO] loading pre-trained network...")

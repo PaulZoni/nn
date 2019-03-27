@@ -10,13 +10,13 @@ datagen = ImageDataGenerator(
         horizontal_flip=True,
         fill_mode='nearest')
 
-img = load_img('/home/pavel/Документы/datasets/generator/i/IMG_20190308_171238.jpg')
+img = load_img('/home/pavel/Документы/datasets/generator/i/IMG_20190308_141208.jpg')
 x = img_to_array(img)
 x = x.reshape((1,) + x.shape)
 
 i = 0
 
-for batch in datagen.flow(x, batch_size=1, save_to_dir='/home/pavel/Документы/datasets/generator/much_i/', save_prefix='3cat_img', save_format='jpg'):
+for batch in datagen.flow(x, batch_size=1, save_to_dir='/home/pavel/Документы/datasets/face/much_i/', save_prefix='3i_img', save_format='jpg'):
     i += 1
-    if i > 11:
+    if i > 2:
         break

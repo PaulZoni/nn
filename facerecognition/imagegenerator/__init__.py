@@ -9,7 +9,7 @@ for i in os.walk(directory):
 
 counter = 0
 
-path_to = '/home/pavel/Документы/datasets/face/w/'
+path_to = '/home/pavel/Документы/datasets/face/persons/'
 
 
 for i in contdir:
@@ -19,7 +19,8 @@ for i in contdir:
         file_from = open(i[0] + '/' + elem, 'rb')
         image = file_from.read()
         file_to.write(image)
-        if counter == 500:
+        print('img:' + str(counter))
+        if counter == 5000:
             break
 
     counter += 1

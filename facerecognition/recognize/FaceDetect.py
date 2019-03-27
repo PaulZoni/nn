@@ -41,12 +41,12 @@ trainY = to_categorical(trainY)
 testY = to_categorical(testY)
 
 print("[INFO] compiling model...")
-opt = SGD(lr=0.005)
+opt = SGD(lr=0.01, decay=0.01 / 40, momentum=0.9, nesterov=True)
 model = MiniVGGNet.build(width=32, height=32, depth=3, classes=2)
 model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
 
 print("[INFO] training network...")
-H = model.fit(trainX, trainY, validation_data=(testX, testY), batch_size=32, epochs=10, verbose=1)
+H = model.fit(trainX, trainY, validation_data=(testX, testY), batch_size=64, epochs=40, verbose=1)
 
 print("[INFO] serializing network...")
 model.save(args["model"])
