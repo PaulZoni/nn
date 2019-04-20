@@ -1,3 +1,7 @@
+import os
+os.environ['THEANO_FLAGS'] = "device=cuda0,force_device=True,floatX=float32,dnn.enabled=False,gcc.cxxflags=-Wno-narrowing,gpuarray.preallocate=0.4"
+#gcc.cxxflags=-Wno-narrowing
+import theano
 from pyimagesearch import load_MNIST, load_target_MNIST
 from pyimagesearch.nn.conv.lenet import LeNet
 from keras.optimizers import SGD

@@ -1,5 +1,4 @@
-from tkinter import *
-import tkinter as tk
+'''from tkinter import *
 import numpy as np
 import cv2
 from PIL import Image, ImageDraw
@@ -82,7 +81,7 @@ cv.bind("<B1-Motion>", paint)
 button = Button(text="save", command=save_image)
 button.pack()
 root.mainloop()
-
+'''
 
 
 

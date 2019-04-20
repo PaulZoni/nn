@@ -1,8 +1,16 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+os.environ['THEANO_FLAGS'] = "device=cuda0,force_device=True,floatX=float32,dnn.enabled=False,gcc.cxxflags=-Wno-narrowing,gpuarray.preallocate=0.4"
+#gcc.cxxflags=-Wno-narrowing
+import theano
+'''-------------------------------------------'''
+
 from keras.utils import to_categorical
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-from pyimagesearch.nn.conv.lenet import LeNet
 from pyimagesearch.nn.conv.minivggnet import MiniVGGNet
 from pyimagesearch.preprocessing.imagetoarraypreprocessor import ImageToArrayPreprocessor
 from pyimagesearch.preprocessing.simplepreprocessor import SimplePreprocessor
@@ -15,7 +23,7 @@ import argparse
 
 
 ap = argparse.ArgumentParser()
-ap.add_argument("-d", "--dataset", required=False, help="path to input dataset", default="/home/pavel/Документы/datasets/face")
+ap.add_argument("-d", "--dataset", required=False, help="path to input dataset", default="/home/pavel/Документы/datasets/face/")
 ap.add_argument("-m", "--model", required=False, help="path to output model", default="/home/pavel/PycharmProjects/nn/facerecognition/savemodel/face_weights.hdf5")
 args = vars(ap.parse_args())
 
