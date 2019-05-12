@@ -1,5 +1,5 @@
 import os
-os.environ['THEANO_FLAGS'] = "device=cuda0,force_device=True,floatX=float32,dnn.enabled=False,gcc.cxxflags=-Wno-narrowing"
+os.environ['THEANO_FLAGS'] = "device=cuda0,force_device=True,floatX=float32,dnn.enabled=False,gcc.cxxflags=-Wno-narrowing,optimizer=fast_compile"
 #optimizer_including=cudnn
 
 from theano import function, config, shared, tensor

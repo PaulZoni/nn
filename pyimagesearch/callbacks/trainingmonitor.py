@@ -7,11 +7,12 @@ import os
 
 class TrainingMonitor(BaseLogger):
 
-    def __init__(self, figPath, jsonPath=None, startAt=0):
+    def __init__(self, figPath, jsonPath=None, startAt=0, val=True):
         super(TrainingMonitor, self).__init__()
         self.figPath = figPath
         self.jsonPath = jsonPath
         self.startAt = startAt
+        self.val = val
 
     def on_train_begin(self, logs=None):
         self.H = {}
@@ -42,9 +43,10 @@ class TrainingMonitor(BaseLogger):
             plt.style.use("ggplot")
             plt.figure()
             plt.plot(N, self.H["loss"], label="train_loss")
-            plt.plot(N, self.H["val_loss"], label="val_loss")
+            if self.val == True:
+                plt.plot(N, self.H["val_loss"], label="val_loss")
+                plt.plot(N, self.H["val_acc"], label="val_acc")
             plt.plot(N, self.H["acc"], label="train_acc")
-            plt.plot(N, self.H["val_acc"], label="val_acc")
             plt.title("Training Loss and Accuracy [Epoch {}]".format(
                 len(self.H["loss"])))
             plt.xlabel("Epoch #")
