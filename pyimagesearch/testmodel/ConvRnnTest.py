@@ -30,7 +30,7 @@ values = {}
 true_values = {}
 
 for index, value in X_train.items():
-    if len(value.split()) < 100:
+    if len(value.split()) < 120:
         values[index] = value
         true_values[index] = y_train[index]
 
@@ -77,7 +77,7 @@ callbacks = [TrainingMonitor(jsonPath=jsonPath, figPath=figPath, val=False), Lea
 model = RnnForWord().build(vocab_size=vocabulary_size, max_review_length=length_max, embedding_vector_length=length_max)
 print("[INFO] compiling model...")
 model.compile(loss='binary_crossentropy', optimizer=optimizer, metrics=['accuracy'])
-history = model.fit(X_train_bad, y_train, epochs=40, batch_size=16, callbacks=callbacks)
+history = model.fit(X_train_bad, y_train, epochs=50, batch_size=16, callbacks=callbacks)
 
 #scores = model.evaluate(X_test_pad, y_test, verbose=0)
 #print('Accuracy : %.4f ' % scores[1])
@@ -100,5 +100,5 @@ plt.title('Model accuracy')
 plt.ylabel('Accuracy')
 plt.xlabel('Epoch')
 plt.legend(['acc', 'loss'], loc='upper left')
-plt.show()
 plt.savefig('/home/pavel/PycharmProjects/nn/pyimagesearch/plot/RnnForWord_plot.png')
+plt.show()
