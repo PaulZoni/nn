@@ -17,7 +17,8 @@ import argparse
 import numpy as np
 import os
 
-path_to_model = '/home/pavel/PycharmProjects/nn/pyimagesearch/model/'
+
+path_to_model = '/home/pavel/PycharmProjects/nn/pyimagesearch/model'
 ap = argparse.ArgumentParser()
 ap.add_argument("-w", "--weights", required=False, help="path to weights directory", default=path_to_model)
 args = vars(ap.parse_args())
@@ -31,7 +32,7 @@ trainY = labelBinaries.fit_transform(trainY)
 testY = labelBinaries.fit_transform(testY)
 
 print("[INFO] compiling model...")
-opt = SGD(lr=0.01, decay=0.01 / 40, momentum=0.9, nesterov=True)
+opt = SGD(lr=0.01, decay=0.01 / 30, momentum=0.9, nesterov=True)
 model = MiniVGGNet.build(width=32, height=32, depth=3, classes=10)
 model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
 
@@ -41,7 +42,7 @@ figPath = os.path.sep.join(['/home/pavel/PycharmProjects/nn/pyimagesearch/plot/'
 jsonPath = os.path.sep.join(['/home/pavel/PycharmProjects/nn/pyimagesearch/plot/', "{}.json".format(os.getpid())])
 callbacks = [checkpoint, TrainingMonitor(jsonPath=jsonPath, figPath=figPath, val=False)]
 print("[INFO] training network...")
-H = model.fit(x=trainX, y=trainY, validation_data=(testX, testY), batch_size=64, epochs=40, callbacks=callbacks, verbose=1)
+H = model.fit(x=trainX, y=trainY, validation_data=(testX, testY), batch_size=64, epochs=30, callbacks=callbacks, verbose=1)
 plt.style.use("ggplot")
 plt.figure()
 plt.plot(np.arange(0, 40), H.history["loss"], label="train_loss")
